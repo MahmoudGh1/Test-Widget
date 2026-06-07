@@ -1,0 +1,88 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Widget Test</title>
+  </head>
+  <body>
+    <h1>Test Store</h1>
+    <div
+      id="debug"
+      style="
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background: black;
+        color: lime;
+        padding: 12px;
+        font-family: monospace;
+        font-size: 13px;
+        z-index: 9999;
+        max-width: 400px;
+        border-radius: 8px;
+      "
+    >
+      Loading widget...
+    </div>
+
+    <script>
+      // Show debug messages on screen
+      function debug(msg, isError) {
+        var el = document.getElementById("debug");
+        el.style.color = isError ? "red" : "lime";
+        el.textContent = msg;
+        console.log(msg);
+      }
+
+      window.SupportNestConfig = {
+        apiKey:
+          "sk_03c1f180d512e1543337e4c60db8d7c66a13382b2a61c11d8d413ab98060ca47", // ← put your real key here
+        baseUrl: "http://localhost:3201",
+      };
+
+      // Manually test /widget/init before loading widget.js
+      fetch("http://localhost:3201/api/v1/widget/init", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": window.SupportNestConfig.apiKey,
+          credentials: "include",
+        },
+        body: JSON.stringify({ customerToken: null }),
+      })
+        .then(function (res) {
+          console.log(1);
+          return res.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          if (data.sessionToken) {
+            debug("✓ Init success — widget should appear");
+          } else {
+            debug("✗ Init returned: " + JSON.stringify(data), true);
+          }
+        })
+        .catch(function (err) {
+          debug("✗ Fetch failed: " + err.message, true);
+        });
+    </script>
+
+    <script src="http://localhost:3201/widget.js"></script>
+  </body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Widget Test</title>
+  </head>
+  <body>
+    <h1>My Test Store</h1>
+    <p>Some page content here.</p>
+
+    <script src="./config.js"></script>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
