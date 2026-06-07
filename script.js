@@ -23,7 +23,7 @@
 	let widgetConfig = {};
 	let isOpen = false;
 	let isSending = false;
-	let conversationStatus = "active";
+	let conversationStatus = "ACTIVE";
 
 	// 3. API LAYER
 	// Two functions handle all HTTP communication with your Express backend
@@ -99,6 +99,7 @@
 	async function handleEvent({ type, payload }) {
 		if (type === "auth_ack") {
 			sessionStorage.setItem("sn_conversation_id", payload.conversationId);
+			conversationStatus = "ACTIVE";
 			loadHistory(payload.history);
 		} else if (type === "typing") {
 			showTyping();
@@ -717,28 +718,28 @@
 		var panel = document.getElementById("sn-panel");
 		panel.classList.toggle("sn-open", isOpen);
 
-		if (isOpen && !conversationId) {
-			// First time opening — start conversation
-			setInputDisabled(true);
+		// if (isOpen && !conversationId) {
+		// 	// First time opening — start conversation
+		// 	setInputDisabled(true);
 
-			try {
-				await startConversation();
+		// 	try {
+		// 		await startConversation();
 
-				await loadHistory();
+		// 		await loadHistory();
 
-				// Show greeting only if no history messages exist
-				var bubbles = document.querySelectorAll(".sn-bubble");
-				if (bubbles.length === 0 && widgetConfig.greetingMessage) {
-					appendMessage("ai", widgetConfig.greetingMessage);
-				}
-			} catch (err) {
-				appendSystemMessage("Could not connect. Please refresh and try again.");
-				console.error("[SupportNest] Connection error:", err.message);
-			} finally {
-				setInputDisabled(false);
-				document.getElementById("sn-input").focus();
-			}
-		}
+		// 		// Show greeting only if no history messages exist
+		// 		var bubbles = document.querySelectorAll(".sn-bubble");
+		// 		if (bubbles.length === 0 && widgetConfig.greetingMessage) {
+		// 			appendMessage("ai", widgetConfig.greetingMessage);
+		// 		}
+		// 	} catch (err) {
+		// 		appendSystemMessage("Could not connect. Please refresh and try again.");
+		// 		console.error("[SupportNest] Connection error:", err.message);
+		// 	} finally {
+		// 		setInputDisabled(false);
+		// 		document.getElementById("sn-input").focus();
+		// 	}
+		// }
 	}
 
 	// 11. BOOT
