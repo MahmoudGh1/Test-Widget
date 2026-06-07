@@ -1,4 +1,4 @@
 window.SupportNestConfig = {
-  apiKey: "sk_725896cfd6eef988f9b8b33bed4bbc39b5a3f435d2d1b160186c002ab3be3bc9",
+  apiKey: "sk_0dcc0a9a59537dd344456ff48e792151214ab548ef64b73ed205528bfc558f71",
   baseUrl: "http://localhost:3001",
 };

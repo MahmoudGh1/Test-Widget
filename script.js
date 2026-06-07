@@ -29,7 +29,7 @@
 	// Two functions handle all HTTP communication with your Express backend
 
 	async function post(endpoint, body, useSession = false) {
-		const headers = { "Content-Type": "application/json" };
+		const headers = { "Content-Type": "application/json", "Credentials": "include" };
 
 		// if (useSession) {
 		//   All requests after init use the session token
@@ -59,6 +59,7 @@
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${sessionToken}`,
+				Credentials: "include"
 			},
 		});
 
